@@ -1,46 +1,39 @@
 module.exports = {
   '@tags': ['class'],
-  'Assert Category Advertisements': browser => {
-    browser
-      .url('http://class.ruten.com.tw/category/main?0008')
+  '購物流程': browser => {
+    browser //載入畫面
+      .url('https://play.niceday.tw/product/3167')
       .waitForElementVisible('body')
-      .assert.title('相機、攝影機 - 露天拍賣')
-      .assert.attributeEquals('.rt-header', 'data-module', 'rt-header')
-      .assert.attributeEquals('.rt-wrap-search', 'data-module', 'page-class-main')
-      .assert.elementPresent('.rt-ad-text-only .rt-ad-item:nth-child(1)')
-      .assert.elementPresent('.promo-bar')
-      .assert.elementPresent('.rt-subcategory-list .rt-subcategory-item')
-      .assert.visible('#ad-flash')
-      .assert.elementPresent('#ad-flash .rt-ad-item')
-      .assert.elementPresent('.rt-flagship')
-      .assert.attributeEquals('.rt-flagship', 'data-module', 'class-main-flagship')
-      .assert.elementPresent('.rt-flagship .rt-ad-item')
-      .assert.elementPresent('.rt-flagship .rt-ad-item:nth-child(1)')
-      .assert.elementPresent('#ad-promote .promoted-item:nth-child(4)')
-      .assert.elementPresent('#ad-special .special-item:nth-child(3)')
-      .assert.attributeEquals('#ad-slideshow', 'data-module', 'class-main-slideshow')
-      .assert.attributeEquals('.hot-sale-gallery', 'data-module', 'class-main-gallery')
-      .assert.elementPresent('.hot-sale-item:nth-child(2)')
-      .assert.elementPresent('#ad-gallery .hot-sale-gallery-item')
-      .assert.visible('.good-shops')
-      .assert.attributeContains('.good-shops .rt-ad-control-item:nth-child(1) .rt-ad-control-link', 'href', 'https://point.ruten.com.tw/ADI/ap2AD/more.php?CM08')
-      .assert.attributeContains('.good-shops .rt-ad-control-item:nth-child(2) .rt-ad-control-link', 'href', 'http://pub.ruten.com.tw/adb/ad01_intro.html')
-      .assert.visible('.good-shops .rt-ad-item')
-      .assert.visible('#ad-featured-list .rt-ad-item')
-      .assert.elementPresent('.top-sell')
-      .assert.elementPresent('.top-sell .rt-ad-item')
-      .assert.elementPresent('.shopping-mall')
-      .assert.elementPresent('.shopping-mall .rt-ad-item')
-      .assert.attributeContains('.shopping-mall .rt-ad-control-item:nth-child(1) .rt-ad-control-link', 'href', 'https://point.ruten.com.tw/ADI/ap2AD/more.php?CS08')
-      .assert.attributeContains('.shopping-mall .rt-ad-control-item:nth-child(2) .rt-ad-control-link', 'href', 'pub.ruten.com.tw/adb/ad02_intro.html')
-      .assert.elementPresent('.rt-ad-search-keyword')
-      .assert.elementPresent('.rt-ad-search-keyword .rt-ad-item')
-      .assert.value('#search_input', '')
-      .setValue('#search_input', '蛋糕', () => {
-        browser.click('.rt-site-search-submit', () => {
-          browser.assert.urlContains('s000.php');
-        });
-      })
-      .end();
-  }
-};
+    browser //展開簡介
+      .useXpath()
+      .click('//*[@id="introductionCkEditor"]/div[2]/div')
+      .expect.element('//*[@id="introductionCkEditor"]').to.be.present
+    browser //scroll顯示stickyHeader
+      .useXpath()
+      .execute('scrollTo(0,3295.199951171875)')
+      .expect.element('//*[@id="__next"]/div/div/div/div[2]/div[2]/div/div[2]/div[1]').to.present
+      // .click('//*[@id="__next"]/div/div/div/div[2]/div[2]/div/div[2]/div[1]/div/div[2]/button')
+      // .expect.element('//*[@id="__next"]/div/div/div/div[1]/div[2]/div').to.be.present
+    browser //選擇其他產品項目，變換日期
+      .useCss()
+      .click('div.fTPNKi')
+      .useXpath()
+      .assert.visible('//*[@id="__next"]/div/div/div/div[2]/div[3]/div/div[1]/div[3]')
+    browser //選擇日期出現timeRange
+      .useXpath()
+      .click('//*[@id="__next"]/div/div/div/div[2]/div[3]/div/div[2]/div/div[3]/div[3]/div[1]')
+      .assert.visible('//*[@id="__next"]/div/div/div/div[2]/div[3]/div/div[2]/div/div[4]/div')
+    // browser //點選時段出現項目
+    //   .useXpath()  
+    //   .click('//*[@id="__next"]/div/div/div/div[2]/div[3]/div/div[2]/div/div[4]/div')
+    //   .expect.element('//*[@id="__next"]/div/div/div/div[2]/div[3]/div/div[2]/div/div[5]').to.be.present
+    browser //點擊一次項目button確認數目為1
+      .useXpath()
+      .click('//*[@id="__next"]/div/div/div/div[2]/div[3]/div/div[2]/div/div[4]/div')
+      .click('//*[@id="__next"]/div/div/div/div[2]/div[3]/div/div[2]/div/div[5]/div[2]/div[2]/div/button[2]')
+      //.expect.element('//*[@id="__next"]/div/div/div/div[2]/div[3]/div/div[2]/div/div[5]/div[2]/div[2]/div/div').text.to.equal('1')
+      .expect.element('//*[@id="__next"]/div/div/div/div[2]/div[3]/div/div[2]/div/div[6]/div[3]').text.be.equal('//*[@id="__next"]/div/div/div/div[2]/div[3]/div/div[1]/div[3]/div[1]/div[1]')
+    browser //關閉頁面
+      .end()
+    }
+}
