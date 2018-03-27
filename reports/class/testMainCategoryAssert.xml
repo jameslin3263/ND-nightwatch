@@ -5,9 +5,9 @@
 
   <testsuite name="class.testMainCategoryAssert"
     errors="1" failures="0" hostname="" id="" package="class" skipped="0"
-    tests="1" time="0.01000" timestamp="Mon, 26 Mar 2018 05:25:33 GMT">
+    tests="1" time="0.01700" timestamp="Mon, 26 Mar 2018 11:45:25 GMT">
   
-    <testcase name="購物流程" classname="class.testMainCategoryAssert" time="0.01000" assertions="0">
+    <testcase name="購物流程" classname="class.testMainCategoryAssert" time="0.01700" assertions="0">
     </testcase>
   
 
@@ -15,8 +15,8 @@
     <system-err>
         Error while running [Class / Test Main Category Assert / 購物流程]:
 
-  TypeError: Cannot read property &#39;element&#39; of undefined
-    at Object.購物流程 (C:\Users\jameslin\Desktop\nightwatch101 - niceday\test\e2e\class\testMainCategoryAssert.js:35:114)
+  TypeError: browser.useXpath(...).click(...).click(...).getText(...).click(...).expect.urlEquals is not a function
+    at Object.購物流程 (C:\Users\jameslin\Desktop\ND-nightwatch\test\e2e\class\testMainCategoryAssert.js:39:15)
     at Module.call (C:\Users\jameslin\AppData\Roaming\npm\node_modules\nightwatch\lib\runner\module.js:62:34)
     at C:\Users\jameslin\AppData\Roaming\npm\node_modules\nightwatch\lib\runner\testcase.js:70:29
     at _fulfilled (C:\Users\jameslin\AppData\Roaming\npm\node_modules\nightwatch\node_modules\q\q.js:834:54)
