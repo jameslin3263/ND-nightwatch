@@ -1,6 +1,3 @@
-var request = require("request");
-var cheerio = require("cheerio");
-
 module.exports = {
     '@tags': ['stageOne'],
     'stageOne正常購物流程(未登錄)': browser => {
@@ -11,23 +8,43 @@ module.exports = {
         browser //展開簡介
             .useXpath()
             .click('//*[@id="introductionCkEditor"]/div[2]')
-            .expect.element('//*[@id="__next"]/div/div/div/section[2]/div/article/div[4]').to.present
-        browser //scroll到顯示stickyHeader後檢查 '折扣中'的Tag是否顯示
+            .expect.element('//*[@id="introductionCkEditor"]').to.present
+        browser //點擊確認付款銀行 "18"家 ，確認顯示 可分期付款銀行，關閉顯示窗口
             .useXpath()
-            .getLocation('//*[@id="__next"]/div/div/div/section[3]/div/aside/div',function(result){
-                this.locationValue = result.value.y
-            })
-            .execute('scrollTo(0,2000)')
-            .execute(function(client){
-                //console.log('locationValue', this.locationValue)
-                if(window.scrollY>2000){
-                    this.expect.element('//*[@id="__next"]/div/div/div/div[3]').to.be.visible
-                }else{
-                    this.expect.element('//*[@id="__next"]/div/div/div/div[1]/header').to.be.visible
-                }
-            })
+            .click('//*[@id="__next"]/div/div/div/section[2]/div/aside/div/div[1]/div[3]/div/p[2]/span[2]')
+            .pause('5000') 
+            .click('/html/body/div[4]/div/div[1]/div/div/div/ul/div')
+            .useCss()
+            .expect.element('body > div:nth-child(9) > div > div:nth-child(1) > div > div').to.not.present
+        browser //scroll到1000確認顯示Header
+            .useXpath()
+            .execute('scrollTo(0,1000)')
+            .expect.element('//*[@id="__next"]/div/div/div/div[1]/header').to.visible
+        browser //繼續scroll確認顯示stickyHeader
+            .useXpath()
+            .execute('scrollTo(0,2500)')
+            .expect.element('//*[@id="__next"]/div/div/div/div[3]').to.visible
+        browser //點擊stickyHeader的 體驗預訂button，確認calendar會出現
+            .useXpath()
+            .pause('5000')
+            .click('//*[@id="__next"]/div/div/div/div[3]/div/div[2]/button')
+            .expect.element('//*[@id="__next"]/div/div/div/section[3]/div/aside/div').to.visible
+        browser //點擊項目二，確定timeRange沒有出現
+            .pause('5000')
+            .useXpath()
+            .click('//*[@id="__next"]/div/div/div/section[3]/div/article/div[2]/div[2]')
+            .useCss()
+            .expect.element('div.gbmupP').to.not.visible
+        // browser
+        //     .pause('5000')
+        //     .useXpath()
+        //     .click('//*[@id="__next"]/div/div/div/section[3]/div/article/div[2]/div[5]')
+        //     .useCss()
+        //     .getText('#__next > p:last-child .eQOuYt::after', function(res){
+        //         console.log(res)
+        //     })
         browser //截圖，關閉瀏覽器
-            .saveScreenshot('./screenshots/index2.png')
+            .saveScreenshot('./screenshots/stageProductpageOne.png')
             .end()
     }
 }
