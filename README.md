@@ -1,5 +1,5 @@
 # Nightwatch101
-手牽手一起來學 Nightwatch！
+本專案原檔案並非本人!!
 
 ![Nightwatch.js](https://cythilya.github.io/assets/nightwatch101/nightwatch.png)
 
@@ -16,10 +16,10 @@ sudo apt install openjdk-8-jdk # 版本號可以改
 ```
 
 ### Step 2：下載專案
-下載本專案並移動到此資料夾底下。
+
 下方專案為原作者檔案
 ```
-git clone https://github.com/cythilya/nightwatch101.git & cd nightwatch101
+git clone https://github.com/cythilya/nightwatch101.git
 ```
 
 ### Step 3：安裝相關檔案
