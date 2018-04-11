@@ -2,6 +2,10 @@ const PKG = require('./package.json');
 const GLOBALS = './globals.js';
 const seleniumServer = require('selenium-server');
 const chromedriver = require('chromedriver');
+const firefox = require('geckodriver');
+const edge = require('edgedriver');
+const safari = require('selenium-drivers');
+
 const config = {
   "src_folders": [
     "test/e2e"
@@ -18,7 +22,9 @@ const config = {
     "host": "127.0.0.1",
     "port": 4444,
     "cli_args": {
-      "webdriver.chrome.driver": chromedriver.path
+      "webdriver.chrome.driver": chromedriver.path,
+      "webdriver.edge.driver": edge.path,
+      "webdriver.gecko.driver" : firefox.path
     }
   },
   // "live_output": true,
@@ -37,6 +43,21 @@ const config = {
         // "retryAssertionTimeout ": 500
       },
       "desiredCapabilities": {
+        "browserName": "MicrosoftEdge",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      },
+      "desiredCapabilities": {
+        "browserName": "firefox",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      },
+      "desiredCapabilities": {
+        "browserName": "safari",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      },
+      "desiredCapabilities": {
         "browserName": "chrome",
         "javascriptEnabled": true,
         "acceptSslCerts": true
@@ -51,6 +72,21 @@ const config = {
         "waitForConditionTimeout": 15000
       },
       "desiredCapabilities": {
+        "browserName": "MicrosoftEdge",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      },
+      "desiredCapabilities": {
+        "browserName": "firefox",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      },
+      "desiredCapabilities": {
+        "browserName": "safari",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      },
+      "desiredCapabilities": {
         "browserName": "chrome",
         "javascriptEnabled": true,
         "acceptSslCerts": true
@@ -59,6 +95,27 @@ const config = {
     "chrome": {
       "desiredCapabilities": {
         "browserName": "chrome",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      }
+    },
+    "edge" : {
+      "desiredCapabilities": {
+        "browserName": "MicrosoftEdge",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      }
+    },
+    "firefox" : {
+      "desiredCapabilities": {
+        "browserName": "firefox",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      }
+    },
+    "safari" : {
+      "desiredCapabilities": {
+        "browserName": "safari",
         "javascriptEnabled": true,
         "acceptSslCerts": true
       }
