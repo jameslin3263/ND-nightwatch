@@ -17,7 +17,7 @@ sudo apt install openjdk-8-jdk # 版本號可以改
 
 ### Step 2：下載專案
 下載本專案並移動到此資料夾底下。
-
+下方專案為原作者檔案
 ```
 git clone https://github.com/cythilya/nightwatch101.git & cd nightwatch101
 ```
@@ -80,10 +80,13 @@ nightwatch-html-reporter -d ./reports
 
 [鐵人賽版](https://ithelp.ithome.com.tw/users/20092232/ironman/1241)。
 
-## Todos
-持續改進中，未來會繼續完成的項目...
-
-- [ ] localhost test
-- [ ] 設定假的 https certificate，然後 bypass https
-- [ ] 假資料填充、測完後移除
-- [ ] CI/CD 整合
+## Environment
+-默認測試環境為Chrome
+-測試其他browser要在cmd上下指定測試環境
+-指令規範 nightwatch -e (browser) (測試內容)
+-browser : chrome, firefox, safari, edge
+-測試內容 : 要測試的指定檔案路徑(option)，不設置會是global test
+-指令範例 
+```
+nightwatch -e firefox .\test\e2e\class\testStageProductpageOne.js
+```
