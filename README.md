@@ -82,11 +82,17 @@ nightwatch-html-reporter -d ./reports
 
 ## Environment
 -默認測試環境為Chrome
+
 -測試其他browser要在cmd上下指定測試環境
+
 -指令規範 nightwatch -e (browser) (測試內容)
+
 -browser : chrome, firefox, safari, edge
+
 -測試內容 : 要測試的指定檔案路徑(option)，不設置會是global test
+
 -指令範例 
+
 ```
 nightwatch -e firefox .\test\e2e\class\testStageProductpageOne.js
 ```
